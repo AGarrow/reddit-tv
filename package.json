@@ -6,6 +6,7 @@
   "registry": "https://registry.yarnpkg.com",
   "scripts": {
     "bundle": "webpack",
+    "generate": "plop",
     "start": "webpack serve --mode development --open --hot"
   },
   "dependencies": {
@@ -27,6 +28,7 @@
     "eslint": "^7.15.0",
     "eslint-config-prettier": "^7.0.0",
     "html-webpack-plugin": "^4.5.0",
+    "inquirer-file-tree-selection-prompt": "^1.0.7",
     "node-sass": "^5.0.0",
     "plop": "^2.7.4",
     "prettier": "^2.2.1",

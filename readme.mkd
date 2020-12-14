@@ -1,0 +1,14 @@
+## Reddit TV
+
+### Getting Started
+
+install dependencies
+`yarn install`
+
+start the server
+`yarn start`
+
+### Contributing
+
+Please make sure to use the plop generators for creating new components.
+`yarn generate component`
