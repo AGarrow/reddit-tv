@@ -10,12 +10,17 @@
     "start": "webpack serve --mode development --open --hot"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.5.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
+    "axios": "^0.21.0",
+    "core-js": "^3.8.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-redux": "^7.2.2",
     "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
+    "regenerator-runtime": "^0.13.7",
     "typescript": "^4.1.3"
   },
   "devDependencies": {
