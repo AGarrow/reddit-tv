@@ -16,6 +16,10 @@ ul.video-list {
     width: 160px;
   }
 
+  li.current {
+    background-color: grey;
+  }
+
   li > div {
     width: 150px;
     max-height: 160px;

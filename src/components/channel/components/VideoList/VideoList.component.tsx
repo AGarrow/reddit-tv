@@ -20,9 +20,19 @@ export const VideoList = ({ videos, loading, currentVideo, }: VideoListProps) =>
   return (
     <div>
       <ul className="video-list">
-        {videos.map((video) => (
-          <VideoBox thumbnail={video.data.thumbnail} title={video.data.title} key={video.data.name}/>
-        ))}
+        {videos.map((video) => {
+          const { thumbnail, title, name } = video.data;
+          const isCurrent = name === currentVideo?.data?.name
+          return (
+            <VideoBox
+              thumbnail={thumbnail}
+              title={title}
+              key={name}
+              isCurrent={isCurrent}
+            />
+          )
+        })
+        }
       </ul>
     </div>
   )

@@ -7,6 +7,8 @@ type mediaAtttributes = {
 }
 export type videoType = {
   data: {
+    title: string,
+    name: string,
     secure_media?: {
       reddit_video: {
         mediaAtttributes

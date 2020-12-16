@@ -17,9 +17,7 @@ export const VideoPlayer = ({ video, loading }: VideoPlayerProps) => {
 
   return (
     <div>
-      <video controls autoPlay muted name="media">
-        <source src={source} />
-      </video>
+      <video controls autoPlay muted name="media" src={source} />
     </div>
   )
 }
