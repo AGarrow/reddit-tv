@@ -13,7 +13,7 @@ export const videosReducer = (state, action) => {
       return {
         ...state,
         [action.id]: {
-          videos: action.payload.data.children,
+          videos: action.payload.data.children.filter((vid) => vid.data.is_video),
           after: action.payload.data.after,
           loading: false,
         }
