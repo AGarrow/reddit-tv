@@ -17,7 +17,6 @@ module.exports = function (plop) {
         type: 'file-tree-selection',
         name: 'directory',
         message: 'Choose a directory to put this component in',
-        onlyShowDir: true,
         root: 'src',
       }
     ],
