@@ -8,19 +8,19 @@ type VideoListProps = {
   videos: videoType[],
   loading: boolean,
   currentVideo: videoType,
+  loadMore: () => void,
 }
 
-export const VideoList = ({ videos, loading, currentVideo, }: VideoListProps) => {
-  if (loading) { 
-    return (
-      <p> loading ... </p>
-    )
+export const VideoList = ({ videos, loading, currentVideo, loadMore, }: VideoListProps) => {
+  const handleScroll = (e) => {
+    const end = e.target.scrollWidth - e.target.scrollLeft === e.target.clientWidth;
+    if (end) { loadMore() }
   }
 
   return (
     <div>
-      <ul className="video-list">
-        {videos.map((video) => {
+      <ul className="video-list" onScroll={handleScroll}>
+        {videos?.map((video) => {
           const { thumbnail, title, name } = video.data;
           const isCurrent = name === currentVideo?.data?.name
           return (
@@ -33,6 +33,9 @@ export const VideoList = ({ videos, loading, currentVideo, }: VideoListProps) =>
           )
         })
         }
+        <li className="loading">
+          loading...
+        </li>
       </ul>
     </div>
   )
