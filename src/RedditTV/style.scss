@@ -31,10 +31,18 @@ div.redditTVContainer {
       flex-grow: 1;
       flex-shrink: 1;
       // max-width: 15%;
-      min-width: 140px;
-      max-width: 150px;
       display: flex;
       flex-direction: column;
+
+      @media screen and (min-width: 950px) {
+        min-width: 140px;
+        max-width: 150px;
+      }
+
+      @media screen and (max-width: 950px) {
+        width: 100%;
+        padding-top: 5px;
+      }
     }
   }
 }

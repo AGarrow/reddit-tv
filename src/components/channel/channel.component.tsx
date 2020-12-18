@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchVideos, selectVideos } from './store/fetchVideos';
-import { VideoList, VideoPlayer, VideoSelectButton } from './components'
+import { PlayerInfo, VideoList, VideoPlayer, VideoSelectButton } from './components'
 import { current } from '@reduxjs/toolkit';
 import './style.scss';
 
@@ -19,6 +19,10 @@ export const Channel = ({ id }: ChannelProps) => {
     dispatch(fetchVideos(id, after)), []
     setCurrentVideoIndex(0);
   }, [id])
+
+  const reloadChannel = () => {
+    dispatch(fetchVideos(id, null))
+  }
 
   useEffect(() => {
     if (videos) {
@@ -45,6 +49,7 @@ export const Channel = ({ id }: ChannelProps) => {
   return (
     <div className="channelContainer">
       <div className="channel">
+      <PlayerInfo channelId={id} currentVideo={currentVideo} reloadChannel={reloadChannel}/>
         <div className="playerWindow">
           <VideoSelectButton role="previous" onClick={previousVideo}/>
           <VideoPlayer

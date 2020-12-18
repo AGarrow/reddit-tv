@@ -9,6 +9,7 @@ export type videoType = {
   data: {
     title: string,
     name: string,
+    permalink: string,
     secure_media?: {
       reddit_video: {
         mediaAtttributes
