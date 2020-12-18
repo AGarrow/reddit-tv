@@ -4,10 +4,11 @@ import type { videoType } from '../../../../types';
 
 type VideoPlayerProps = {
   video?: videoType,
-  loading: boolean
+  loading: boolean,
+  onEnded: () => void,
 }
 
-export const VideoPlayer = ({ video, loading }: VideoPlayerProps) => {
+export const VideoPlayer = ({ video, loading, onEnded }: VideoPlayerProps) => {
   if (loading || video == null) {
     return <div> loading ... </div>
   }
@@ -45,12 +46,13 @@ export const VideoPlayer = ({ video, loading }: VideoPlayerProps) => {
         onPlay={playAudio}
         onPause={pauseAudio}
         onSeeking={syncAudio}
+        onEnded={onEnded}
         name="media"
         src={videoSource}
         ref={videoRef}
       >
       </video>
-      <audio src={audioSource} ref={audioRef} loop>
+      <audio src={audioSource} ref={audioRef}>
       </audio>
 
     </div>

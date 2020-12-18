@@ -46,7 +46,11 @@ export const Channel = ({ id }: ChannelProps) => {
       <div> {id} </div>
       <div className="playerWindow">
         <VideoSelectButton role="previous" onClick={previousVideo}/>
-        <VideoPlayer video={currentVideo} loading={loading && currentVideo === null} />
+        <VideoPlayer
+          video={currentVideo}
+          loading={loading && currentVideo === null}
+          onEnded={nextVideo}
+        />
         <VideoSelectButton role="next" onClick={nextVideo}/>
       </div>
       <VideoList
