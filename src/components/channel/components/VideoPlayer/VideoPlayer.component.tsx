@@ -10,7 +10,7 @@ type VideoPlayerProps = {
 
 export const VideoPlayer = ({ video, loading, onEnded }: VideoPlayerProps) => {
   if (loading || video == null) {
-    return <div> loading ... </div>
+    return <div className="videoPlayer"> loading ... </div>
   }
 
   const videoData = video?.data;

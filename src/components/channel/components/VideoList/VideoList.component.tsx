@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { Dispatch, SetStateAction, useEffect, useRef } from 'react'
 
 import { VideoBox } from '../VideoBox'
 import type { videoType } from '../../../../types';
@@ -11,7 +11,7 @@ type VideoListProps = {
   currentVideo: videoType,
   currentVideoIndex: number,
   loadMore: () => void,
-  setCurrentVideoIndex: () => void
+  setCurrentVideoIndex: Dispatch<SetStateAction<number>>
 }
 
 export const VideoList = ({
