@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchVideos, selectVideos } from './store/fetchVideos';
 import { VideoList, VideoPlayer, VideoSelectButton } from './components'
 import { current } from '@reduxjs/toolkit';
+import './style.scss';
 
 type ChannelProps = {
   id: string
@@ -43,9 +44,11 @@ export const Channel = ({ id }: ChannelProps) => {
   return (
     <div className="channel">
       <div> {id} </div>
-      <VideoSelectButton role="previous" onClick={previousVideo}/>
-      <VideoPlayer video={currentVideo} loading={loading && currentVideo === null} />
-      <VideoSelectButton role="next" onClick={nextVideo}/>
+      <div className="playerWindow">
+        <VideoSelectButton role="previous" onClick={previousVideo}/>
+        <VideoPlayer video={currentVideo} loading={loading && currentVideo === null} />
+        <VideoSelectButton role="next" onClick={nextVideo}/>
+      </div>
       <VideoList
         videos={videos}
         loading={loading}

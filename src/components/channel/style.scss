@@ -1,0 +1,25 @@
+.playerWindow {
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+
+  .videoPlayer {
+    width: 90%;
+    height: 600px;
+    justify-content: center;
+    display: flex;
+    background-color: black;
+
+    video {
+      max-width: 100%;
+      height: 100%;
+      background-color: black;
+      margin: 0 auto;
+    }
+  }
+
+  .videoSelectButton {
+    width: 5%;
+  }
+}

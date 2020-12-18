@@ -8,7 +8,7 @@ type VideoBoxProps = {
   reference?: any,
 }
 
-export const VideoBox = ({ thumbnail, title, key, isCurrent, reference }: VideoBoxProps) => {
+export const VideoBox = ({ thumbnail, title, isCurrent, reference }: VideoBoxProps) => {
   return (
     <li ref={reference} className={isCurrent ? "current" : null}>
       <div>
