@@ -2,5 +2,17 @@
   ul {
     list-style-type: none;
     padding-left: 0%;
+
+    li {
+      border-bottom: 1px;
+      button {
+        background-color: transparent;
+        border: none;
+      }
+    }
+
+    li.current {
+      background-color: grey;
+    }
   }
 }
