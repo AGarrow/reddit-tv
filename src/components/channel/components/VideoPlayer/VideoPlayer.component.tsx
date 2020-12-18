@@ -33,11 +33,9 @@ export const VideoPlayer = ({ video, loading, onEnded }: VideoPlayerProps) => {
 
   const syncAudio = () => {
     audioRef.current.currentTime = videoRef.current.currentTime
-    syncAudio()
   }
 
   useEffect(() => {
-    audioRef.current.play();
     videoRef.current.play();
   }, [video])
 
@@ -46,6 +44,7 @@ export const VideoPlayer = ({ video, loading, onEnded }: VideoPlayerProps) => {
       <video
         controls
         onPlay={playAudio}
+        onPlaying={syncAudio}
         onPause={pauseAudio}
         onSeeking={syncAudio}
         onEnded={onEnded}
