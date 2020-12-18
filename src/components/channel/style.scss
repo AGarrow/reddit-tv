@@ -1,11 +1,10 @@
 .playerWindow {
-  width: 100%;
-
   display: flex;
   flex-direction: row;
-
+  flex-grow: 1;
   .videoPlayer {
     width: 90%;
+    flex-grow: 1;
     height: 600px;
     justify-content: center;
     display: flex;

@@ -1,0 +1,40 @@
+div.redditTVContainer > * {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+div.redditTVContainer {
+  div {
+    div.channelContainer {
+      max-width: -webkit-calc(100% - 150px);
+      max-width: -moz-calc(100% - 150px);
+      max-width: calc(100% - 150px);
+
+      @media screen and (max-width: 950px) {
+        max-width: 100%;
+      }
+
+      div.channel {
+        flex-basis: 80%;
+        flex-grow: 1;
+        flex-shrink: 1;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        max-width: 100%;
+      }
+    }
+
+    div.channelListContainer {
+      flex-basis: 15%;
+      flex-grow: 1;
+      flex-shrink: 1;
+      // max-width: 15%;
+      min-width: 140px;
+      max-width: 150px;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}

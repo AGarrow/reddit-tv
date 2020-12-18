@@ -52,8 +52,8 @@ export const VideoList = ({
   }, [currentVideo])
 
   return (
-    <div>
-      <ul className="video-list" onScroll={handleScroll} ref={listRef}>
+    <div className="videoListContainer">
+      <ul className="videoList" onScroll={handleScroll} ref={listRef}>
         {videos?.map((video, index) => {
           const { thumbnail, title, name } = video.data;
           const isCurrent = name === currentVideo?.data?.name

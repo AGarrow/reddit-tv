@@ -1,9 +1,14 @@
-ul.video-list {
+div.videoListContainer {
+  flex-basis: 100%;
+  max-width: 100%;
+}
+ul.videoList {
   list-style-type: none;
   margin: 0;
   padding: 0;
 
   display: flex;
+  width: 100%;
   flex-direction: row;
   overflow-x: auto;
   overflow-y: hidden;

@@ -17,6 +17,7 @@ export const Channel = ({ id }: ChannelProps) => {
 
   useEffect(() => {
     dispatch(fetchVideos(id, after)), []
+    setCurrentVideoIndex(0);
   }, [id])
 
   useEffect(() => {
@@ -42,25 +43,26 @@ export const Channel = ({ id }: ChannelProps) => {
     return <div> initializing ... </div>
   }
   return (
-    <div className="channel">
-      <div> {id} </div>
-      <div className="playerWindow">
-        <VideoSelectButton role="previous" onClick={previousVideo}/>
-        <VideoPlayer
-          video={currentVideo}
-          loading={loading && currentVideo === null}
-          onEnded={nextVideo}
+    <div className="channelContainer">
+      <div className="channel">
+        <div className="playerWindow">
+          <VideoSelectButton role="previous" onClick={previousVideo}/>
+          <VideoPlayer
+            video={currentVideo}
+            loading={loading && currentVideo === null}
+            onEnded={nextVideo}
+          />
+          <VideoSelectButton role="next" onClick={nextVideo}/>
+        </div>
+        <VideoList
+          videos={videos}
+          loading={loading}
+          currentVideo={currentVideo}
+          currentVideoIndex={currentVideoIndex}
+          setCurrentVideoIndex={setCurrentVideoIndex}
+          loadMore={loadMore}
         />
-        <VideoSelectButton role="next" onClick={nextVideo}/>
       </div>
-      <VideoList
-        videos={videos}
-        loading={loading}
-        currentVideo={currentVideo}
-        currentVideoIndex={currentVideoIndex}
-        setCurrentVideoIndex={setCurrentVideoIndex}
-        loadMore={loadMore}
-      />
     </div>
   )
 }
