@@ -6,17 +6,18 @@ type VideoBoxProps = {
   key: string,
   isCurrent: boolean
   reference?: any,
+  onClick: () => void,
 }
 
-export const VideoBox = ({ thumbnail, title, isCurrent, reference }: VideoBoxProps) => {
+export const VideoBox = ({ thumbnail, title, isCurrent, reference, onClick }: VideoBoxProps) => {
   return (
     <li ref={reference} className={isCurrent ? "current" : null}>
-      <div>
+      <button onClick={onClick}>
         <div className="image-container">
           <img src={thumbnail} />
         </div>
         <p>{title}</p>
-      </div>
+      </button>
     </li>
   )
 }

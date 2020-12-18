@@ -20,9 +20,11 @@ ul.video-list {
     background-color: grey;
   }
 
-  li > div {
+  li > button {
     width: 150px;
     max-height: 160px;
+    border: none;
+    background-color: transparent;
 
     .image-container {
       height: 120px;

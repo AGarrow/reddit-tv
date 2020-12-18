@@ -58,6 +58,7 @@ export const Channel = ({ id }: ChannelProps) => {
         loading={loading}
         currentVideo={currentVideo}
         currentVideoIndex={currentVideoIndex}
+        setCurrentVideoIndex={setCurrentVideoIndex}
         loadMore={loadMore}
       />
     </div>

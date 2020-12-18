@@ -28,10 +28,12 @@ export const VideoPlayer = ({ video, loading, onEnded }: VideoPlayerProps) => {
 
   const pauseAudio = () => {
     audioRef.current.pause()
+    syncAudio()
   }
 
   const syncAudio = () => {
     audioRef.current.currentTime = videoRef.current.currentTime
+    syncAudio()
   }
 
   useEffect(() => {

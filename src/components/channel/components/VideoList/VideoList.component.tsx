@@ -11,9 +11,17 @@ type VideoListProps = {
   currentVideo: videoType,
   currentVideoIndex: number,
   loadMore: () => void,
+  setCurrentVideoIndex: () => void
 }
 
-export const VideoList = ({ videos, loading, currentVideo, loadMore, currentVideoIndex}: VideoListProps) => {
+export const VideoList = ({
+  videos,
+  loading,
+  currentVideo,
+  loadMore,
+  currentVideoIndex,
+  setCurrentVideoIndex,
+}: VideoListProps) => {
   const handleScroll = (e) => {
     const end = e.target.scrollWidth - e.target.scrollLeft === e.target.clientWidth;
     if (end) { loadMore() }
@@ -46,7 +54,7 @@ export const VideoList = ({ videos, loading, currentVideo, loadMore, currentVide
   return (
     <div>
       <ul className="video-list" onScroll={handleScroll} ref={listRef}>
-        {videos?.map((video) => {
+        {videos?.map((video, index) => {
           const { thumbnail, title, name } = video.data;
           const isCurrent = name === currentVideo?.data?.name
           return (
@@ -55,7 +63,8 @@ export const VideoList = ({ videos, loading, currentVideo, loadMore, currentVide
               title={title}
               key={name}
               isCurrent={isCurrent}
-              reference={isCurrent ? currentRef : null }
+              reference={isCurrent ? currentRef : null}
+              onClick={() => setCurrentVideoIndex(index)}
             />
           )
         })
