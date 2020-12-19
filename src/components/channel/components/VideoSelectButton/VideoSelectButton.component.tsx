@@ -1,4 +1,5 @@
 import React from 'react'
+import { Icon } from '../../../../components/Icon'
 
 type VideoSelectButtonProps = {
   role: "previous" | "next",
@@ -7,6 +8,8 @@ type VideoSelectButtonProps = {
 
 export const VideoSelectButton = ({ role, onClick }: VideoSelectButtonProps) => {
   return (
-    <button onClick={onClick} className="videoSelectButton"> {role} </button>
+    <button onClick={onClick} className="videoSelectButton">
+      <Icon type={role} />
+    </button>
   )
 }
