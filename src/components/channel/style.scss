@@ -1,20 +1,29 @@
+@import "../../styles/base/constants.scss";
+
 .playerInfo {
   width: 100%;
 }
 .playerWindow {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   flex-grow: 1;
   .videoPlayer {
-    width: 90%;
     flex-grow: 1;
+    flex-shrink: 1;
     height: 600px;
     justify-content: center;
     display: flex;
     background-color: black;
+    order: 2;
+
+    @include sm {
+      order: 1;
+    }
 
     video {
       max-width: 100%;
+      min-width: 80%;
       height: 100%;
       background-color: black;
       margin: 0 auto;
@@ -22,6 +31,24 @@
   }
 
   .videoSelectButton {
-    width: 5%;
+    max-width: 5%;
+    min-width: 50px;
+    flex-grow: 1;
+
+    &[role="previous"] {
+      order: 1;
+      @include sm {
+        order: 2;
+      }
+    }
+    &[role="next"] {
+      order: 3;
+    }
+
+    @include sm {
+      width: 50%;
+      max-width: 100%;
+      max-height: 8rem;
+    }
   }
 }
