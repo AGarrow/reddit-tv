@@ -16,6 +16,7 @@
     display: flex;
     background-color: black;
     order: 2;
+    max-width: 86%;
 
     @include sm {
       order: 1;
