@@ -48,6 +48,7 @@ export const VideoPlayer = ({ video, loading, onEnded }: VideoPlayerProps) => {
         onPause={pauseAudio}
         onSeeking={syncAudio}
         onEnded={onEnded}
+        playsInline
         name="media"
         src={videoSource}
         ref={videoRef}

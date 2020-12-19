@@ -8,7 +8,7 @@ type VideoSelectButtonProps = {
 
 export const VideoSelectButton = ({ role, onClick }: VideoSelectButtonProps) => {
   return (
-    <button onClick={onClick} className="videoSelectButton">
+    <button onClick={onClick} className="videoSelectButton" role={role}>
       <Icon type={role} />
     </button>
   )
