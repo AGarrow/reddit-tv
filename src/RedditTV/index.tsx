@@ -1,6 +1,6 @@
 import { current } from '@reduxjs/toolkit';
 import React, { useState } from 'react';
-import { Channel, ChannelSelector } from '../components'
+import { Channel, ChannelSelector, VersionInfo } from '../components'
 import './style.scss';
 
 export const RedditTV = () => {
@@ -9,8 +9,9 @@ export const RedditTV = () => {
     <div className="redditTVContainer">
       <div>
         <ChannelSelector currentChannelId={currentChannelId} setCurrentChannelId={setCurrentChannelId} />
-          <Channel id={currentChannelId} />
+        <Channel id={currentChannelId} />
       </div>
+      <VersionInfo />
     </div>
   )
 }
