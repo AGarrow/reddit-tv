@@ -14,7 +14,7 @@ module.exports = env => {
       './src/index'
     ],
     output: {
-      path: path.join(__dirname, 'dist', env.TARGET_ENV),
+      path: path.join(__dirname, 'dist', env.TARGET_ENV || 'dev'),
       filename: 'bundle.js',
     },
     resolve: {

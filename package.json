@@ -10,7 +10,7 @@
     "deploy:prod": "aws s3 sync ./dist/prod/ s3://subreddit.tv",
     "deploy:staging": "aws s3 sync ./dist/staging/ s3://staging.subreddit.tv",
     "generate": "plop",
-    "start": "webpack serve --mode development --open --hot"
+    "start": "TARGET_ENV=dev webpack serve --mode development --open --hot"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.5.0",
