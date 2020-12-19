@@ -7,6 +7,8 @@
   "scripts": {
     "build:prod": "TARGET_ENV=prod webpack --env TARGET_ENV=prod",
     "build:staging": "TARGET_ENV=staging webpack --env TARGET_ENV=staging",
+    "deploy:prod": "aws s3 sync ./dist/prod/ s3://subreddit.tv",
+    "deploy:staging": "aws s3 sync ./dist/staging/ s3://staging.subreddit.tv",
     "generate": "plop",
     "start": "webpack serve --mode development --open --hot"
   },
