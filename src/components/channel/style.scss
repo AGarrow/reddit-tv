@@ -34,14 +34,22 @@
     max-width: 5%;
     min-width: 50px;
     flex-grow: 1;
+    -webkit-appearance: none;
+    border: none;
 
     &[role="previous"] {
       order: 1;
+      border-radius: 5px 0px 0px 5px;
+      border-right: 1px;
+      border-right-style: solid;
       @include sm {
         order: 2;
       }
     }
     &[role="next"] {
+      border-radius: 0px 5px 5px 0px;
+      border-left: 1px;
+      border-left-style: solid;
       order: 3;
     }
 

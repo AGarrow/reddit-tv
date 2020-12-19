@@ -1,4 +1,10 @@
+@import "../../styles/base/constants.scss";
+
 svg.icon {
   height: 100%;
   width: 100%;
+
+  @include sm {
+    max-height: 8rem;
+  }
 }
