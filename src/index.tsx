@@ -8,7 +8,6 @@ import 'regenerator-runtime/runtime';
 
 import { RedditTV } from './RedditTV';
 
-
 import { store } from './store'
 
 const rootElement = document.getElementById('root')

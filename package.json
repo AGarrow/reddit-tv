@@ -5,7 +5,8 @@
   "author": "Alexi Garrow",
   "registry": "https://registry.yarnpkg.com",
   "scripts": {
-    "bundle": "webpack",
+    "build:prod": "TARGET_ENV=prod webpack --env TARGET_ENV=prod",
+    "build:staging": "TARGET_ENV=staging webpack --env TARGET_ENV=staging",
     "generate": "plop",
     "start": "webpack serve --mode development --open --hot"
   },
