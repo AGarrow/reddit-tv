@@ -1,5 +1,4 @@
 import React from 'react'
-import './style.scss'
 
 export const VersionInfo = ({ }) => {
   if (process.env.TARGET_ENV !== 'staging') {
