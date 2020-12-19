@@ -44,9 +44,8 @@ export const VideoPlayer = ({ video, loading, onEnded }: VideoPlayerProps) => {
       <video
         controls
         onPlay={playAudio}
-        onPlaying={syncAudio}
         onPause={pauseAudio}
-        onSeeking={syncAudio}
+        onSeeked={syncAudio}
         onEnded={onEnded}
         playsInline
         name="media"
