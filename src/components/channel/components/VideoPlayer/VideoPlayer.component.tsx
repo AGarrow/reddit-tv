@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
-import Hls from 'hls.js';
 import type { videoType } from '../../../../types';
+import { defaultChannels } from '../../../../utils';
+import { RedditVideoPlayer, YoutubeVideoPlayer } from './components';
 
 type VideoPlayerProps = {
   video?: videoType,
@@ -14,48 +15,18 @@ export const VideoPlayer = ({ video, loading, onEnded }: VideoPlayerProps) => {
   }
 
   const videoData = video?.data;
-  const videoSource = videoData.secure_media.reddit_video.fallback_url;
-  
-  // this is hacky as all heck but the only way to get audio to play that I can see
-  const audioSource = videoSource.replace(/DASH_.*/, 'DASH_audio.mp4')
+  const domain = videoData?.domain
+  let videoSource;
 
-  const audioRef = useRef(null)
-  const videoRef = useRef(null)
-
-  const playAudio = () => {
-    audioRef.current.play();
+  switch (domain) {
+    case "v.redd.it":
+      videoSource = videoData.secure_media.reddit_video.fallback_url;
+      return <RedditVideoPlayer videoSource={videoSource} onEnded={onEnded} /> 
+    case "youtube.com":
+      videoSource = videoData.secure_media.oembed.html.match(/src="(.*)"/)[1]
+      return <YoutubeVideoPlayer videoSource={videoSource} onEnded={onEnded} />
+    default:
+      console.log(videoData);
+      return null;
   }
-
-  const pauseAudio = () => {
-    audioRef.current.pause()
-    syncAudio()
-  }
-
-  const syncAudio = () => {
-    audioRef.current.currentTime = videoRef.current.currentTime
-  }
-
-  useEffect(() => {
-    videoRef.current.play();
-  }, [video])
-
-  return (
-    <div className="videoPlayer">
-      <video
-        controls
-        onPlay={playAudio}
-        onPause={pauseAudio}
-        onSeeked={syncAudio}
-        onEnded={onEnded}
-        playsInline
-        name="media"
-        src={videoSource}
-        ref={videoRef}
-      >
-      </video>
-      <audio src={audioSource} ref={audioRef}>
-      </audio>
-
-    </div>
-  )
 }
