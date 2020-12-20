@@ -2,7 +2,6 @@ import React, { Dispatch, SetStateAction, useEffect, useRef } from 'react'
 
 import { VideoBox } from '../VideoBox'
 import type { videoType } from '../../../../types';
-import './style.scss';
 import { current } from '@reduxjs/toolkit';
 
 type VideoListProps = {

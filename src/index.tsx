@@ -7,6 +7,7 @@ import 'core-js/stable'
 import 'regenerator-runtime/runtime';
 
 import { RedditTV } from './RedditTV';
+import './style.scss';
 
 import { store } from './store'
 

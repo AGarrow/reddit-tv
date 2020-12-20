@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchVideos, selectVideos, selectCurrentVideo } from './store/fetchVideos';
 import { PlayerInfo, VideoList, VideoPlayer, VideoSelectButton } from './components'
 import { current } from '@reduxjs/toolkit';
-import './style.scss';
 
 type ChannelProps = {
   id: string

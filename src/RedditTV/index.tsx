@@ -1,7 +1,6 @@
 import { current } from '@reduxjs/toolkit';
 import React, { useState } from 'react';
 import { Channel, ChannelSelector, VersionInfo } from '../components'
-import './style.scss';
 
 export const RedditTV = () => {
   const [currentChannelId, setCurrentChannelId] = useState('PublicFreakout')

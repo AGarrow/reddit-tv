@@ -1,6 +1,5 @@
 import React, { Dispatch, SetStateAction } from 'react'
 import { defaultChannels } from '../../utils';
-import './style.scss';
 
 type ChannelSelectorProps = {
   setCurrentChannelId: Dispatch<SetStateAction<string>>,

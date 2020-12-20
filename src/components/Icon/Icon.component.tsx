@@ -1,7 +1,6 @@
 import React from 'react'
 import { defaultChannels } from '../../utils';
 import { NextIcon, PreviousIcon } from './components';
-import './style.scss';
 
 type IconProps = {
   type: string

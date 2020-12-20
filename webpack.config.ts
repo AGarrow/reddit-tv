@@ -37,7 +37,13 @@ module.exports = env => {
             'css-loader',
             'sass-loader'
           ]
-        }
+        },
+        {
+          test: /\.(ttf)$/,
+          use: {
+            loader: 'url-loader',
+          },
+        },
       ]
     },
     plugins: [
