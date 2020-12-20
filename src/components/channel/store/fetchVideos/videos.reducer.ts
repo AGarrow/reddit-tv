@@ -10,7 +10,7 @@ export const videosReducer = (state, action) => {
       }
     }
     case 'channel/videos/videosLoaded': {
-      const returnedVideos = action.payload.data.children.filter((vid) => vid.data.is_video)
+      const returnedVideos = action.payload.data.children.filter((vid) => vid.data.is_video || vid.data.domain === 'youtube.com')
       const videoList = action.after == null ? returnedVideos : state[action.id].videos.concat(returnedVideos);
       
       return {
