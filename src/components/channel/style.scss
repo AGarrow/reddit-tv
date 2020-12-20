@@ -8,6 +8,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   flex-grow: 1;
+
   .videoPlayer {
     flex-grow: 1;
     flex-shrink: 1;
@@ -16,7 +17,6 @@
     display: flex;
     background-color: black;
     order: 2;
-    max-width: 86%;
 
     @include sm {
       order: 1;
@@ -59,7 +59,7 @@
     @include sm {
       width: 50%;
       max-width: 100%;
-      max-height: 8rem;
+      max-height: 5rem;
     }
   }
 }
