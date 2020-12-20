@@ -1,6 +1,8 @@
+@import "../base/constants.scss";
 .videoSelectButton {
   -webkit-appearance: none;
   border: none;
+  background-color: $brand-med-grey;
 
   &[role="previous"] {
     order: 1;

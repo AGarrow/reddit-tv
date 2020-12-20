@@ -1,3 +1,5 @@
+@import "../base/constants.scss";
+
 ul.videoList {
   list-style-type: none;
   margin: 0;
@@ -8,6 +10,8 @@ ul.videoList {
   flex-direction: row;
   overflow-x: auto;
   overflow-y: hidden;
+
+  background-color: $brand-med-grey;
 
   li {
     display: block;
@@ -26,6 +30,7 @@ ul.videoList {
     max-height: 160px;
     border: none;
     background-color: transparent;
+    color: $brand-light-white;
 
     .image-container {
       height: 120px;
