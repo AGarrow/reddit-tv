@@ -19,10 +19,14 @@
       button {
         background-color: transparent;
         width: 100%;
+        text-overflow: ellipsis;
         border: none;
         text-align: left;
         font-family: "Helvetica Neue Medium";
         color: $brand-light-white;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        font-size: 14px;
       }
     }
 
