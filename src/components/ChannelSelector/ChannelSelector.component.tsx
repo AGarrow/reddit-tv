@@ -12,7 +12,7 @@ export const ChannelSelector = ({ setCurrentChannelId, currentChannelId }: Chann
       <h3>Channels</h3>
       <ul>
         {defaultChannels().map((ch) => (
-          <li className={ch.id === currentChannelId ? "current" : null }>
+          <li key={ch.id} className={ch.id === currentChannelId ? "current" : null }>
             <button onClick={() => setCurrentChannelId(ch.id)}>
               {ch.id}
             </button>

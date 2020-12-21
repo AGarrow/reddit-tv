@@ -13,7 +13,7 @@ export const PlayerInfo = ({ currentVideo }: PlayerInfoProps) => {
   return (
     <div className="playerInfo">
       <h3>
-        {currentVideo ? <h3><a href={`https://reddit.com${permalink}`} target="_blank">{title}</a></h3> : null}
+        {currentVideo ? <a href={`https://reddit.com${permalink}`} target="_blank">{title}</a> : null}
       </h3>      
     </div>
   )

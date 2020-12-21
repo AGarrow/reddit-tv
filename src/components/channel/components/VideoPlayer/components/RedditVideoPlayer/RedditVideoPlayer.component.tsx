@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 type RedditVideoPlayerProps = {
   videoSource: string,
@@ -8,12 +8,16 @@ type RedditVideoPlayerProps = {
 export const RedditVideoPlayer = ({ videoSource, onEnded }: RedditVideoPlayerProps) => {
   // this is hacky as all heck but the only way to get audio to play that I can see
   const audioSource = videoSource.replace(/DASH_.*/, 'DASH_audio.mp4')
+  const [audioEnabled, setAudioEnabled] = useState(false);
 
   const audioRef = useRef(null)
   const videoRef = useRef(null)
 
   const playAudio = () => {
-    audioRef.current.play();
+    if (audioEnabled) {
+      syncAudio();
+      audioRef.current.play();
+    }
   }
 
   const pauseAudio = () => {
@@ -25,8 +29,10 @@ export const RedditVideoPlayer = ({ videoSource, onEnded }: RedditVideoPlayerPro
     audioRef.current.currentTime = videoRef.current.currentTime
   }
 
-  useEffect(() => {
+  const startPlaying = useCallback(() => {
+    setAudioEnabled(true);
     videoRef.current.play();
+    playAudio();
   }, [videoSource])
 
   return (
@@ -34,18 +40,17 @@ export const RedditVideoPlayer = ({ videoSource, onEnded }: RedditVideoPlayerPro
       <video
         controls
         onPlay={playAudio}
+        onLoadedMetadata={startPlaying}
         onPause={pauseAudio}
         onSeeked={syncAudio}
         onEnded={onEnded}
         playsInline
-        name="media"
         src={videoSource}
         ref={videoRef}
       >
       </video>
       <audio src={audioSource} ref={audioRef}>
       </audio>
-
     </div>
   )
 }
