@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 
 type RedditVideoPlayerProps = {
   videoSource: string,
@@ -25,8 +25,9 @@ export const RedditVideoPlayer = ({ videoSource, onEnded }: RedditVideoPlayerPro
     audioRef.current.currentTime = videoRef.current.currentTime
   }
 
-  useEffect(() => {
-    videoRef.current.play();
+  const startPlaying = useCallback(() => {
+    videoRef.current.play()
+    playAudio()
   }, [videoSource])
 
   return (
@@ -34,11 +35,11 @@ export const RedditVideoPlayer = ({ videoSource, onEnded }: RedditVideoPlayerPro
       <video
         controls
         onPlay={playAudio}
+        onCanPlay={startPlaying}
         onPause={pauseAudio}
         onSeeked={syncAudio}
         onEnded={onEnded}
         playsInline
-        name="media"
         src={videoSource}
         ref={videoRef}
       >
