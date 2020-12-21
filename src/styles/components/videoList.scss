@@ -11,6 +11,9 @@ ul.videoList {
   overflow-x: auto;
   overflow-y: hidden;
 
+  border-radius: 5px;
+  box-shadow: 3px 3px 3px 0px;
+
   background-color: $brand-med-grey;
 
   li {
@@ -22,12 +25,14 @@ ul.videoList {
   }
 
   li.current {
-    background-color: grey;
+    background-color: $brand-light-grey;
+    border-radius: 5px;
+    box-shadow: 1px 1px 4px 0px;
   }
 
   li > button {
     width: 150px;
-    max-height: 160px;
+    max-height: 180px;
     border: none;
     background-color: transparent;
     color: $brand-light-white;
@@ -45,9 +50,11 @@ ul.videoList {
     }
 
     p {
-      max-height: 20px;
+      max-height: 35px;
       max-width: 150px;
+      margin-top: 5px;
       text-overflow: ellipsis;
+      overflow-y: hidden;
     }
   }
 }

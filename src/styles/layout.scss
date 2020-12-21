@@ -9,11 +9,11 @@ div.redditTVContainer > * {
 div.redditTVContainer {
   div {
     div.channelContainer {
-      max-width: -webkit-calc(100% - 150px);
-      max-width: -moz-calc(100% - 150px);
-      max-width: calc(100% - 150px);
+      max-width: -webkit-calc(100% - 200px);
+      max-width: -moz-calc(100% - 200px);
+      max-width: calc(100% - 200px);
 
-      @media screen and (max-width: 950px) {
+      @media screen and (max-width: $screen-lg-min) {
         max-width: 100%;
       }
 
@@ -36,12 +36,12 @@ div.redditTVContainer {
       display: flex;
       flex-direction: column;
 
-      @media screen and (min-width: 950px) {
+      @include lg {
         min-width: 140px;
-        max-width: 150px;
+        max-width: 200px;
       }
 
-      @media screen and (max-width: 950px) {
+      @media screen and (max-width: $screen-lg-min) {
         width: 100%;
         padding-top: 5px;
       }
@@ -104,11 +104,19 @@ div.redditTVContainer {
       width: 50%;
       max-width: 100%;
       max-height: 5rem;
+      margin-top: 5px;
+    }
+
+    svg.icon {
+      @include sm {
+        max-height: 5rem;
+      }
     }
   }
 }
 
-.playerInfo {
+.playerInfo,
+.channelInfo {
   width: 100%;
 }
 

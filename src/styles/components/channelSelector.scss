@@ -1,11 +1,8 @@
 @import "../base/constants.scss";
 
 .channelListContainer {
-  padding-top: 100px;
-
   h3 {
     margin-bottom: 0px;
-    margin-top: 0px;
     font-family: "Helvetica Neue Medium";
     color: $brand-light-white;
   }
@@ -19,15 +16,19 @@
       button {
         background-color: transparent;
         width: 100%;
+        text-overflow: ellipsis;
         border: none;
         text-align: left;
         font-family: "Helvetica Neue Medium";
         color: $brand-light-white;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        font-size: 14px;
       }
     }
 
     li.current {
-      background-color: grey;
+      background-color: $brand-light-grey;
     }
   }
 }
