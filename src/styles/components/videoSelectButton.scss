@@ -3,6 +3,7 @@
   -webkit-appearance: none;
   border: none;
   background-color: $brand-med-grey;
+  outline: none;
 
   &[role="previous"] {
     order: 1;

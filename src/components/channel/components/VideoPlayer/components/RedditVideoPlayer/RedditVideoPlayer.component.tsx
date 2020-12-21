@@ -40,7 +40,7 @@ export const RedditVideoPlayer = ({ videoSource, onEnded }: RedditVideoPlayerPro
       <video
         controls
         onPlay={playAudio}
-        onCanPlay={startPlaying}
+        onLoadedMetadata={startPlaying}
         onPause={pauseAudio}
         onSeeked={syncAudio}
         onEnded={onEnded}
