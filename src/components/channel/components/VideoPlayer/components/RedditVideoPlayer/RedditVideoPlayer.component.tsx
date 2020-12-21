@@ -14,7 +14,8 @@ export const RedditVideoPlayer = ({ videoSource, onEnded }: RedditVideoPlayerPro
   const videoRef = useRef(null)
 
   const playAudio = () => {
-    if(audioEnabled) {
+    if (audioEnabled) {
+      syncAudio();
       audioRef.current.play();
     }
   }
@@ -30,8 +31,8 @@ export const RedditVideoPlayer = ({ videoSource, onEnded }: RedditVideoPlayerPro
 
   const startPlaying = useCallback(() => {
     setAudioEnabled(true);
-    videoRef.current.play()
-    playAudio()
+    videoRef.current.play();
+    playAudio();
   }, [videoSource])
 
   return (
