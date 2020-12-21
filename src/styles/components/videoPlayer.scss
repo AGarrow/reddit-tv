@@ -1,3 +1,10 @@
 .videoPlayer {
   background-color: black;
+
+  @include sm {
+    box-shadow: 3px 3px 3px 0px;
+  }
+}
+.playerWindow {
+  box-shadow: 3px 3px 3px 0px;
 }
