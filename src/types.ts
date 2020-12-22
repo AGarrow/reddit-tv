@@ -10,9 +10,11 @@ export type videoType = {
     title: string,
     name: string,
     permalink: string,
+    domain: string,
     secure_media?: {
-      reddit_video: {
-        mediaAtttributes
+      reddit_video: mediaAtttributes
+      oembed: {
+        html: string,
       }
     },
     media: {
