@@ -1,8 +1,8 @@
 import React, { Dispatch, SetStateAction } from 'react'
 import { useCookies } from 'react-cookie';
 
-import { defaultChannels, sortChannels } from '../../utils';
-import { ChannelList } from './components'
+import { defaultChannels, sortChannels, addChannelToList } from '../../utils';
+import { ChannelList, ChannelSearch } from './components'
 
 type ChannelSelectorProps = {
   setCurrentChannelId: Dispatch<SetStateAction<string>>,
@@ -13,9 +13,14 @@ export const ChannelSelector = ({ setCurrentChannelId, currentChannelId }: Chann
   const [cookies, setCookies] = useCookies(['my_channels']);
   const myChannels = sortChannels(cookies['my_channels'] || [])
 
+  const addChannel = (channelId) => {
+    setCookies('my_channels', addChannelToList(myChannels, { id: channelId }))
+    setCurrentChannelId(channelId)
+  }
   return (
     <div className="channelListContainer">
       <h3>Channels</h3>
+      <ChannelSearch addChannel={addChannel}/>
       <ChannelList
         title='My Channels'
         channels={myChannels}
