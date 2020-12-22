@@ -18,7 +18,7 @@ export type videoType = {
       }
     },
     media: {
-      mediaAtttributes
+      reddit_video: mediaAtttributes
     }
     thumbnail: string,
     is_video: boolean
