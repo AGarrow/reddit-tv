@@ -4,7 +4,7 @@ export const defaultChannels = () => {
   return sortChannels(DEFAULT_CHANNELS)
 }
 
-const sortChannels = (channelList) => {
+export const sortChannels = (channelList) => {
   return channelList.sort((a, b) => {
     if (a.id < b.id) {
       return -1

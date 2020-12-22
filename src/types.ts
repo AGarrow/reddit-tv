@@ -22,3 +22,7 @@ export type videoType = {
     is_video: boolean
   }
 }
+
+export type channelType = {
+  id: string
+}
