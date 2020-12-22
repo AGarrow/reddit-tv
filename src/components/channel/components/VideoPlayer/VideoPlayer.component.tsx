@@ -26,7 +26,6 @@ export const VideoPlayer = ({ video, loading, onEnded }: VideoPlayerProps) => {
       videoSource = videoData.secure_media.oembed.html.match(/src="(.*)"/)[1]
       return <YoutubeVideoPlayer videoSource={videoSource} onEnded={onEnded} />
     default:
-      console.log(videoData);
       return null;
   }
 }

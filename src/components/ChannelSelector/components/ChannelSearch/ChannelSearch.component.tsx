@@ -21,11 +21,16 @@ export const ChannelSearch = ({ addChannel }: ChannelSearchProps) => {
 
   return (
     <div className="channelSearch">
-      <input type="text" onChange={subredditSearch} onFocus={() => setShowResults(true)}/>
+      <input
+        type="text"
+        placeholder="Search"
+        onChange={subredditSearch}
+        onFocus={() => setShowResults(true)} /
+      >
       <ul className={showResults ? null : "hide"}>
         {
           results.map((r) => (
-            <li>
+            <li key={r.name}>
               <button onClick={
                 () => {
                   addChannel(r.name)
