@@ -2,6 +2,7 @@ import { webpack, EnvironmentPlugin } from "webpack";
 
 var path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const Handlebars = require('handlebars');
 const child_process = require('child_process');
 
 const git = (command) => (
@@ -15,6 +16,7 @@ module.exports = env => {
     ],
     output: {
       path: path.join(__dirname, 'dist', env.TARGET_ENV || 'dev'),
+      publicPath: '/',
       filename: 'bundle.js',
     },
     resolve: {
@@ -43,6 +45,10 @@ module.exports = env => {
           use: {
             loader: 'url-loader',
           },
+        },
+        {
+          test: /\.(png|svg|jpg|jpeg|gif)$/i,
+          type: 'asset/resource',
         },
       ]
     },
