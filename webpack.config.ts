@@ -2,7 +2,6 @@ import { webpack, EnvironmentPlugin } from "webpack";
 
 var path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const Handlebars = require('handlebars');
 const child_process = require('child_process');
 
 const git = (command) => (
