@@ -15,6 +15,7 @@ module.exports = env => {
     ],
     output: {
       path: path.join(__dirname, 'dist', env.TARGET_ENV || 'dev'),
+      publicPath: '/',
       filename: 'bundle.js',
     },
     resolve: {
@@ -43,6 +44,10 @@ module.exports = env => {
           use: {
             loader: 'url-loader',
           },
+        },
+        {
+          test: /\.(png|svg|jpg|jpeg|gif)$/i,
+          type: 'asset/resource',
         },
       ]
     },
