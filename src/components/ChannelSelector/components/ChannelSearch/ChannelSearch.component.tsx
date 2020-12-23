@@ -25,8 +25,9 @@ export const ChannelSearch = ({ addChannel }: ChannelSearchProps) => {
         type="text"
         placeholder="Search"
         onChange={subredditSearch}
-        onFocus={() => setShowResults(true)} /
-      >
+        onFocus={() => setShowResults(true)}
+        onBlur={() => setShowResults(false)}
+      />
       <ul className={showResults ? null : "hide"}>
         {
           results.map((r) => (

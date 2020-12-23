@@ -1,6 +1,7 @@
 div.channelSearch {
   margin-top: 5px;
-  padding-right: 15px;
+  margin-bottom: 5px;
+  padding-right: 20px;
   input {
     box-sizing: border-box;
     border-style: none;
@@ -9,7 +10,9 @@ div.channelSearch {
     padding-top: 5px;
     padding-bottom: 5px;
     padding-left: 15px;
+    padding-right: 15px;
     outline-style: none;
+    font-size: 16px;
   }
 
   ul {
