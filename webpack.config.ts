@@ -2,6 +2,8 @@ import { webpack, EnvironmentPlugin } from "webpack";
 
 var path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WebpackPwaManifest = require('webpack-pwa-manifest')
+const CopyPlugin = require("copy-webpack-plugin");
 const child_process = require('child_process');
 
 const git = (command) => (
@@ -53,6 +55,18 @@ module.exports = env => {
     },
     plugins: [
       new HtmlWebpackPlugin({ template: './src/index.html' }),
+      new CopyPlugin({
+        patterns: [
+          { from: "src/assets/icons/favicon.ico" },
+        ],
+      }),
+      new WebpackPwaManifest({
+        name: 'subReddit TV',
+        icons: [
+          { src: path.resolve('src/assets/icons/icon-192.png'), size: '192x192' },
+          { src: path.resolve('src/assets/icons/icon-512.png'), size: '512x512' }
+        ]
+      }),
       new EnvironmentPlugin(['TARGET_ENV']),
       new EnvironmentPlugin({'VERSION': git('describe --always')})
     ]
