@@ -1,4 +1,3 @@
-import { createSelector } from 'reselect';
 import type { videoType } from '../../../../types';
 
 type videosReturnType = {
@@ -19,10 +18,17 @@ type videoReturnType = {
   currentVideo?: videoType,
 }
 
-export const selectCurrentVideo = (state, channelId, videoIndex): videoReturnType => {
+export const selectCurrentVideo = (state, channelId): videoReturnType => {
   const channelVideos = state.videos[channelId]?.videos
+  const videoIndex = state.videos[channelId]?.currentVideoIndex
   return {
     loading: state.videos[channelId]?.loading,
     currentVideo: channelVideos && channelVideos[videoIndex]
+  }
+}
+
+export const selectCurrentVideoIndex = (state, channelId) => {
+  return {
+    currentVideoIndex: state.videos[channelId]?.currentVideoIndex
   }
 }

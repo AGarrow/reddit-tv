@@ -1,6 +1,12 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchVideos, selectVideos, selectCurrentVideo } from './store/fetchVideos';
+import {
+  fetchVideos,
+  selectVideos,
+  selectCurrentVideo,
+  selectCurrentVideoIndex,
+  setCurrentVideoIndexAction,
+} from './store/fetchVideos';
 import {
   ChannelInfo,
   PlayerInfo,
@@ -8,7 +14,6 @@ import {
   VideoPlayer,
   VideoSelectButton
 } from './components'
-import { current } from '@reduxjs/toolkit';
 
 type ChannelProps = {
   id: string
@@ -17,12 +22,11 @@ type ChannelProps = {
 export const Channel = ({ id }: ChannelProps) => {
   const dispatch = useDispatch();
   const { loading, videos, after } = useSelector(state => selectVideos(state, id))
-  const [currentVideoIndex, setCurrentVideoIndex] = useState(0)
-  const { currentVideo } = useSelector(state => selectCurrentVideo(state, id, currentVideoIndex))
+  const { currentVideoIndex } = useSelector(state => selectCurrentVideoIndex(state, id))
+  const { currentVideo } = useSelector(state => selectCurrentVideo(state, id))
 
   useEffect(() => {
     dispatch(fetchVideos(id, after)), []
-    setCurrentVideoIndex(0);
   }, [id])
 
   const reloadChannel = () => {
@@ -41,6 +45,10 @@ export const Channel = ({ id }: ChannelProps) => {
   const loadMore = useCallback(() => {
     dispatch(fetchVideos(id, after))
   }, [after])
+
+  const setCurrentVideoIndex = useCallback((index) => {
+    dispatch(setCurrentVideoIndexAction(id, index))
+  }, [currentVideoIndex])
 
   if (!videos && !loading) {
     return <div> initializing ... </div>
