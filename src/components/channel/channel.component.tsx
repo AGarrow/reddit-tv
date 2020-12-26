@@ -6,6 +6,8 @@ import {
   selectCurrentVideo,
   selectCurrentVideoIndex,
   setCurrentVideoIndexAction,
+  nextVideoAction,
+  previousVideoAction
 } from './store/fetchVideos';
 import {
   ChannelInfo,
@@ -27,27 +29,20 @@ export const Channel = ({ id }: ChannelProps) => {
   const { currentVideoIndex } = useSelector(state => selectCurrentVideoIndex(state, id))
   const { currentVideo } = useSelector(state => selectCurrentVideo(state, id))
   
-  // const nextVideo = () => {
-  //   setCurrentVideoIndex(currentVideoIndex + 1)
-  // }
   const nextVideo = useCallback(() => {
-    console.log(currentVideoIndex);
-    setCurrentVideoIndex(currentVideoIndex + 1)
-  }, [currentVideoIndex])
+    dispatch(nextVideoAction(id));
+  }, [dispatch, nextVideoAction, id])
 
-  const previousVideo = () => {
-    if(currentVideoIndex === 0) { return }
-    setCurrentVideoIndex(currentVideoIndex - 1)
-  }
-  
+  const previousVideo = useCallback(() => {
+    dispatch(previousVideoAction(id));
+  }, [dispatch, previousVideoAction, id])
+
   useKeyboardShortcut(['ArrowRight'], nextVideo);
-
-  // useEffect(() => {
-  //   console.log('called');
-  // }, [nextVideo])
-  // useKeyboardShortcut(['A'], nextVideo)
-  // useKeyboardShortcut(['ArrowLeft'], previousVideo)
-  // useKeyboardShortcut(['D'], previousVideo)
+  useKeyboardShortcut(['D'], nextVideo)
+  useKeyboardShortcut(['d'], nextVideo)
+  useKeyboardShortcut(['ArrowLeft'], previousVideo)
+  useKeyboardShortcut(['A'], previousVideo)
+  useKeyboardShortcut(['a'], previousVideo)
   
   useEffect(() => {
     dispatch(fetchVideos(id, after)), []
@@ -73,7 +68,10 @@ export const Channel = ({ id }: ChannelProps) => {
       <div className="channel">
         <ChannelInfo channelId={id} reloadChannel={reloadChannel}/>
         <div className="playerWindow">
-          <VideoSelectButton role="previous" onClick={previousVideo}/>
+          <VideoSelectButton
+            role="previous"
+            onClick={previousVideo}
+          />
           <VideoPlayer
             video={currentVideo}
             loading={loading && currentVideo === null}
