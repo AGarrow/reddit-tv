@@ -6,6 +6,8 @@ import {
   selectCurrentVideo,
   selectCurrentVideoIndex,
   setCurrentVideoIndexAction,
+  nextVideoAction,
+  previousVideoAction
 } from './store/fetchVideos';
 import {
   ChannelInfo,
@@ -14,6 +16,8 @@ import {
   VideoPlayer,
   VideoSelectButton
 } from './components'
+import { current } from '@reduxjs/toolkit';
+import { useKeyboardShortcut } from '../../utils';
 
 type ChannelProps = {
   id: string
@@ -24,22 +28,28 @@ export const Channel = ({ id }: ChannelProps) => {
   const { loading, videos, after } = useSelector(state => selectVideos(state, id))
   const { currentVideoIndex } = useSelector(state => selectCurrentVideoIndex(state, id))
   const { currentVideo } = useSelector(state => selectCurrentVideo(state, id))
+  
+  const nextVideo = useCallback(() => {
+    dispatch(nextVideoAction(id));
+  }, [dispatch, nextVideoAction, id])
 
+  const previousVideo = useCallback(() => {
+    dispatch(previousVideoAction(id));
+  }, [dispatch, previousVideoAction, id])
+
+  useKeyboardShortcut(['ArrowRight'], nextVideo);
+  useKeyboardShortcut(['D'], nextVideo)
+  useKeyboardShortcut(['d'], nextVideo)
+  useKeyboardShortcut(['ArrowLeft'], previousVideo)
+  useKeyboardShortcut(['A'], previousVideo)
+  useKeyboardShortcut(['a'], previousVideo)
+  
   useEffect(() => {
     dispatch(fetchVideos(id, after)), []
   }, [id])
 
   const reloadChannel = () => {
     dispatch(fetchVideos(id, null))
-  }
-  
-  const nextVideo = () => {
-    setCurrentVideoIndex(currentVideoIndex + 1)
-  }
-
-  const previousVideo = () => {
-    if(currentVideoIndex === 0) { return }
-    setCurrentVideoIndex(currentVideoIndex - 1)
   }
 
   const loadMore = useCallback(() => {
@@ -48,7 +58,7 @@ export const Channel = ({ id }: ChannelProps) => {
 
   const setCurrentVideoIndex = useCallback((index) => {
     dispatch(setCurrentVideoIndexAction(id, index))
-  }, [currentVideoIndex])
+  }, [id, dispatch, setCurrentVideoIndexAction])
 
   if (!videos && !loading) {
     return <div> initializing ... </div>
@@ -58,7 +68,10 @@ export const Channel = ({ id }: ChannelProps) => {
       <div className="channel">
         <ChannelInfo channelId={id} reloadChannel={reloadChannel}/>
         <div className="playerWindow">
-          <VideoSelectButton role="previous" onClick={previousVideo}/>
+          <VideoSelectButton
+            role="previous"
+            onClick={previousVideo}
+          />
           <VideoPlayer
             video={currentVideo}
             loading={loading && currentVideo === null}

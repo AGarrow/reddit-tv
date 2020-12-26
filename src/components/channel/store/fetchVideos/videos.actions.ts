@@ -7,7 +7,15 @@ export const fetchVideos = (channelId, after) => async (dispatch, getState) => {
 }
 
 export const setCurrentVideoIndexAction = (channelId, index) => (dispatch, getState) => {
-  dispatch({ type: 'channel/videos/setIndex', channelId: channelId, index: index })
+  dispatch({ type: 'channel/videos/setIndex', channelId, index })
+}
+
+export const nextVideoAction = (channelId) => (dispatch, getState) => {
+  dispatch({ type: 'channel/videos/next', channelId })
+}
+
+export const previousVideoAction = (channelId) => (dispatch, getState) => {
+  dispatch({ type: 'channel/videos/previous', channelId })
 }
 
 const redditURL = (channelId, after) => {
