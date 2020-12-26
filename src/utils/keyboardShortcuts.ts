@@ -2,7 +2,6 @@ import { current } from "@reduxjs/toolkit";
 import { useCallback, useEffect, useReducer } from "react";
 
 const keysReducer = (state, action) => {
-  console.log('reducer called!');
   switch (action.type) {
     case "set-key-down":
       const keydownState = { ...state, [action.key]: true };
@@ -31,7 +30,6 @@ export const useKeyboardShortcut = (
     if (repeat) return;
     if (!shortcutKeys.includes(key)) return;
     if (!keys[key]) {
-      console.log('set keys');
       setKeys({ type: 'set-key-down', key })
     }
   }, [shortcutKeys, keys])
@@ -42,17 +40,13 @@ export const useKeyboardShortcut = (
     if (!shortcutKeys.includes(key)) return;
 
     if (keys[key]) {
-      console.log('set keys');
       setKeys({ type: 'set-key-up', key })
     }
   }, [shortcutKeys, keys])
   
   useEffect(() => {
     window.addEventListener("keydown", keydownListener, true)
-    console.log(shortcutKeys, keys, keydownListener)
-    console.log('binding')
     return () => {
-      console.log('cleanup')
       window.removeEventListener("keydown", keydownListener, true)
     }
   }, [keydownListener])
@@ -63,7 +57,7 @@ export const useKeyboardShortcut = (
   }, [keyupListener])
 
   useEffect(() => {
-    if (!Object.values(keys).filter(value => !value).length) {
+    if (Object.values(keys).some(e => e)) {
       callback()
     }
   }, [callback, keys])

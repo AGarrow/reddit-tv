@@ -37,12 +37,8 @@ export const Channel = ({ id }: ChannelProps) => {
     dispatch(previousVideoAction(id));
   }, [dispatch, previousVideoAction, id])
 
-  useKeyboardShortcut(['ArrowRight'], nextVideo);
-  useKeyboardShortcut(['D'], nextVideo)
-  useKeyboardShortcut(['d'], nextVideo)
-  useKeyboardShortcut(['ArrowLeft'], previousVideo)
-  useKeyboardShortcut(['A'], previousVideo)
-  useKeyboardShortcut(['a'], previousVideo)
+  useKeyboardShortcut(['ArrowRight', 'D', 'd'], nextVideo);
+  useKeyboardShortcut(['ArrowLeft', 'A', 'a'], previousVideo)
   
   useEffect(() => {
     dispatch(fetchVideos(id, after)), []
