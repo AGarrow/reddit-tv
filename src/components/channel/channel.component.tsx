@@ -14,6 +14,8 @@ import {
   VideoPlayer,
   VideoSelectButton
 } from './components'
+import { current } from '@reduxjs/toolkit';
+import { useKeyboardShortcut } from '../../utils';
 
 type ChannelProps = {
   id: string
@@ -24,22 +26,35 @@ export const Channel = ({ id }: ChannelProps) => {
   const { loading, videos, after } = useSelector(state => selectVideos(state, id))
   const { currentVideoIndex } = useSelector(state => selectCurrentVideoIndex(state, id))
   const { currentVideo } = useSelector(state => selectCurrentVideo(state, id))
+  
+  // const nextVideo = () => {
+  //   setCurrentVideoIndex(currentVideoIndex + 1)
+  // }
+  const nextVideo = useCallback(() => {
+    console.log(currentVideoIndex);
+    setCurrentVideoIndex(currentVideoIndex + 1)
+  }, [currentVideoIndex])
 
+  const previousVideo = () => {
+    if(currentVideoIndex === 0) { return }
+    setCurrentVideoIndex(currentVideoIndex - 1)
+  }
+  
+  useKeyboardShortcut(['ArrowRight'], nextVideo);
+
+  // useEffect(() => {
+  //   console.log('called');
+  // }, [nextVideo])
+  // useKeyboardShortcut(['A'], nextVideo)
+  // useKeyboardShortcut(['ArrowLeft'], previousVideo)
+  // useKeyboardShortcut(['D'], previousVideo)
+  
   useEffect(() => {
     dispatch(fetchVideos(id, after)), []
   }, [id])
 
   const reloadChannel = () => {
     dispatch(fetchVideos(id, null))
-  }
-  
-  const nextVideo = () => {
-    setCurrentVideoIndex(currentVideoIndex + 1)
-  }
-
-  const previousVideo = () => {
-    if(currentVideoIndex === 0) { return }
-    setCurrentVideoIndex(currentVideoIndex - 1)
   }
 
   const loadMore = useCallback(() => {
@@ -48,7 +63,7 @@ export const Channel = ({ id }: ChannelProps) => {
 
   const setCurrentVideoIndex = useCallback((index) => {
     dispatch(setCurrentVideoIndexAction(id, index))
-  }, [currentVideoIndex])
+  }, [id, dispatch, setCurrentVideoIndexAction])
 
   if (!videos && !loading) {
     return <div> initializing ... </div>
