@@ -5,13 +5,16 @@ div.redditTVContainer > * {
   flex-direction: row;
   flex-wrap: wrap;
 }
-html {
-  height: 99%;
-  body {
-    height: 100%;
 
-    div#root {
+@include md {
+  html {
+    height: 99%;
+    body {
       height: 100%;
+
+      div#root {
+        height: 100%;
+      }
     }
   }
 }
