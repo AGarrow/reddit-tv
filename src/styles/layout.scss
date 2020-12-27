@@ -27,6 +27,7 @@ div.redditTVContainer {
       max-width: -webkit-calc(100% - 200px);
       max-width: -moz-calc(100% - 200px);
       max-width: calc(100% - 200px);
+      flex: 1;
 
       @media screen and (max-width: $screen-lg-min) {
         max-width: 100%;
