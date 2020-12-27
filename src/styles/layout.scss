@@ -50,13 +50,11 @@ div.redditTVContainer {
           }
 
           @include md {
-            flex-wrap: none;
             overflow: hidden;
           }
 
           .videoPlayer {
-            flex-grow: 1;
-            flex-shrink: 2;
+            flex: 1 2 100%;
             align-self: stretch;
 
             justify-content: center;
@@ -81,7 +79,7 @@ div.redditTVContainer {
           .videoSelectButton {
             max-width: 5%;
             min-width: 50px;
-            flex-grow: 1;
+            flex: 1 1 5%;
 
             &[role="previous"] {
               order: 1;
@@ -106,10 +104,6 @@ div.redditTVContainer {
               }
             }
           }
-        }
-
-        .playerInfo {
-          flex: 1;
         }
 
         .videoListContainer {
