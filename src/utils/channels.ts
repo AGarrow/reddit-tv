@@ -1,9 +1,6 @@
 import { DEFAULT_CHANNELS } from './constants'
 import { channelType } from '../types';
 
-export const defaultChannels = () => {
-  return sortChannels(DEFAULT_CHANNELS)
-}
 
 export const addChannelToList = (existingChannels: channelType[], newChannel: channelType) => {
   if (existingChannels == null || existingChannels.length === 0) {
@@ -28,3 +25,5 @@ export const sortChannels = (channelList) => {
     }
   })
 }
+
+export const defaultChannels = sortChannels(DEFAULT_CHANNELS);
