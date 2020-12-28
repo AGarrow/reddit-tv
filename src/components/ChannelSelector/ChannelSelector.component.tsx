@@ -2,8 +2,14 @@ import React, { Dispatch, SetStateAction, useCallback, useEffect, useReducer } f
 import { useCookies } from 'react-cookie';
 import { createImportSpecifier } from 'typescript';
 
-import { defaultChannels, sortChannels, addChannelToList, useKeyboardShortcut, excludeInputTarget } from '../../utils';
-import { nextVideoAction } from '../Channel/store/fetchVideos';
+import {
+  defaultChannels,
+  sortChannels,
+  addChannelToList,
+  useKeyboardShortcut,
+  useListSelector,  
+} from '../../utils';
+
 import { ChannelList, ChannelSearch } from './components'
 
 type ChannelSelectorProps = {
@@ -27,36 +33,13 @@ export const ChannelSelector = ({ setCurrentChannelId, currentChannelId }: Chann
     index: currentChannelIndex
   }
 
-  const channelSelectionReducer = (state, action) => {
-    switch (action.type) {
-      case 'next':
-        return state.index >= allChannels.length - 1 ? state : { index: state.index + 1 }
-      case 'previous':
-        return state.index > 0 ? { index: state.index - 1 } : state
-      default: 
-        return state
-    }
+  const setChannelByIndex = (channelIndex) => {
+    setCurrentChannelId(allChannels[channelIndex].id)
   }
+  const { next, previous } = useListSelector(currentChannelIndex, allChannels, setChannelByIndex)
 
-  const [channelIndexState, dispatch] = useReducer(channelSelectionReducer, initialState)
-  
-  const nextChannel = useCallback(() => {
-    dispatch({ type: 'next' })
-  }, [])
-
-  const previousChannel = useCallback(() => {
-    dispatch({ type: 'previous' })
-  }, [])
-
-  useKeyboardShortcut(['W', 'w', 'ArrowUp'], previousChannel)
-  useKeyboardShortcut(['S', 's', 'ArrowDown'], nextChannel)
-
-  useEffect(() => {
-    const indexId = allChannels[channelIndexState.index].id
-    if (indexId !== currentChannelId) {
-      setCurrentChannelId(indexId)
-    }
-  }, [channelIndexState.index])
+  useKeyboardShortcut(['W', 'w', 'ArrowUp'], previous)
+  useKeyboardShortcut(['S', 's', 'ArrowDown'], next)
 
   return (
     <div className="channelListContainer">
