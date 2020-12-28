@@ -2,7 +2,7 @@ import React, { Dispatch, SetStateAction, useCallback, useEffect, useReducer } f
 import { useCookies } from 'react-cookie';
 import { createImportSpecifier } from 'typescript';
 
-import { defaultChannels, sortChannels, addChannelToList, useKeyboardShortcut } from '../../utils';
+import { defaultChannels, sortChannels, addChannelToList, useKeyboardShortcut, excludeInputTarget } from '../../utils';
 import { nextVideoAction } from '../Channel/store/fetchVideos';
 import { ChannelList, ChannelSearch } from './components'
 
@@ -48,8 +48,7 @@ export const ChannelSelector = ({ setCurrentChannelId, currentChannelId }: Chann
     dispatch({ type: 'previous' })
   }, [])
 
-
-  useKeyboardShortcut(['W','w', 'ArrowUp'], previousChannel)
+  useKeyboardShortcut(['W', 'w', 'ArrowUp'], previousChannel)
   useKeyboardShortcut(['S', 's', 'ArrowDown'], nextChannel)
 
   useEffect(() => {
