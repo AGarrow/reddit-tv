@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState, useRef } from 'react'
 import axios from 'axios';
 import { addSyntheticLeadingComment } from 'typescript';
+import { useKeyboardShortcut } from '../../../../utils';
 
 type ChannelSearchProps = {
   addChannel: (channelId: string) => void;
@@ -9,6 +10,7 @@ type ChannelSearchProps = {
 export const ChannelSearch = ({ addChannel }: ChannelSearchProps) => {
   const [results, setResults] = useState([]);
   const [showResults, setShowResults] = useState(true)
+  const searchRef = useRef(null);
 
   const subredditSearch = async (event) => {
     const value = event.target.value;
@@ -19,10 +21,22 @@ export const ChannelSearch = ({ addChannel }: ChannelSearchProps) => {
     );
   }
 
+  const focusSearch = useCallback(() => {
+    searchRef.current.focus()
+  }, [searchRef])
+
+  const leaveFocus = useCallback(() => {
+    searchRef.current.blur()
+  }, [searchRef])
+
+  useKeyboardShortcut(['t', 'T'], focusSearch)
+  useKeyboardShortcut(['Escape'], leaveFocus)
+
   return (
     <div className="channelSearch">
       <input
         type="text"
+        ref={searchRef}
         placeholder="Search"
         onChange={subredditSearch}
         onFocus={() => setShowResults(true)}
