@@ -1,9 +1,8 @@
 import { useCallback, useEffect, useReducer } from 'react';
-import { convertTypeAcquisitionFromJson } from 'typescript';
 
 export const useListSelector = (
   initialIndex: number,
-  list: [],
+  list: any[],
   callback?: (index: number) => void
 ) => {
   const initialState = { index: initialIndex }
@@ -14,6 +13,8 @@ export const useListSelector = (
         return state.index >= list.length - 1 ? state : { index: state.index + 1 }
       case 'previous':
         return state.index > 0 ? { index: state.index - 1 } : state
+      case 'reset':
+        return initialState
       default:
         return state
     }
@@ -29,11 +30,15 @@ export const useListSelector = (
     dispatch({ type: 'previous' })
   }, [])
 
+  const reset = useCallback(() => {
+    dispatch({ type: 'reset' })
+  }, [])
+
   useEffect(() => {
     if (callback != null) {
-      callback(indexState.index)  
+      callback(indexState.index);
     }
-  }, [indexState.index])
+  }, [indexState.index, list])
 
-  return { next, previous, index: indexState.state }
+  return { next, previous, reset, index: indexState.state }
 }

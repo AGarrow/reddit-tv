@@ -66,7 +66,9 @@ export const useKeyboardShortcut = (
 
   useEffect(() => {
     window.addEventListener("keyup", keyupListener, true);
-    return () => window.removeEventListener("keydown", keyupListener, true)
+    return () => {
+      window.removeEventListener("keyup", keyupListener, true)
+    }
   }, [keyupListener])
 
   useEffect(() => {

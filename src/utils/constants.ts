@@ -1,29 +1,26 @@
 export const DEFAULT_CHANNELS = [
   {
-    id: 'Cringe'
+    id: 'cringe'
   },
   {
-    id: 'DeadOrVegetable'
+    id: 'instant_regret'
   },
   {
-    id: 'Instant_regret'
-  },
-  {
-    id: 'Oops'
+    id: 'instantkarma'
   },
   {
     id: 'PublicFreakout'
   },
   {
-    id: 'ThatLookedExpensive'
+    id: 'toptalent'
   },
   {
-    id: 'WhatCouldGoWrong'
+    id: 'Whatcouldgowrong'
   },
   {
     id: 'WinStupidPrizes'
   },
   {
-    id: 'Videos'
+    id: 'videos'
   }
 ]

@@ -28,3 +28,9 @@ export type videoType = {
 export type channelType = {
   id: string
 }
+
+export type channelGroupType = {
+  name: string,
+  order: number,
+  channels: channelType[]
+}
