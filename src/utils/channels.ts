@@ -14,15 +14,7 @@ export const addChannelToList = (existingChannels: channelType[], newChannel: ch
 
 export const sortChannels = (channelList) => {
   return channelList.sort((a, b) => {
-    if (a.id < b.id) {
-      return -1
-    }
-    if (a.id > b.id) {
-      return 1
-    }
-    else {
-      return 0
-    }
+    return (a.id.toLowerCase() < b.id.toLowerCase() ? -1 : 1)
   })
 }
 

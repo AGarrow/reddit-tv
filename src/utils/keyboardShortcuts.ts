@@ -14,9 +14,16 @@ const keysReducer = (state, action) => {
   }
 };
 
+export const excludeInputTarget = { nodeName: "INPUT" }
+
+type targetSpec = {
+  [key: string]: string
+}
+
 export const useKeyboardShortcut = (
   shortcutKeys: string[],
-  callback: () => void
+  callback: () => void,
+  excludeTargets: targetSpec = excludeInputTarget,
 ) => {
   const initialKeyMapping = shortcutKeys.reduce((currentKeys, key) => {
     currentKeys[key] = false;
@@ -25,9 +32,14 @@ export const useKeyboardShortcut = (
 
   const [keys, setKeys] = useReducer(keysReducer, initialKeyMapping)
 
+  const targetMatchesSpec = (target, spec) => (
+    !!Object.keys(spec).find((key) => target[key] === spec[key])
+  )
+
   const keydownListener = useCallback(event => {
-    const { key, repeat } = event;
+    const { key, target, repeat } = event;
     if (repeat) return;
+    if (excludeTargets && targetMatchesSpec(target, excludeTargets)) return;
     if (!shortcutKeys.includes(key)) return;
     if (!keys[key]) {
       setKeys({ type: 'set-key-down', key })
@@ -35,8 +47,9 @@ export const useKeyboardShortcut = (
   }, [shortcutKeys, keys])
 
   const keyupListener = useCallback(event => {
-    const { key, repeat } = event;
+    const { key, target, repeat } = event;
     if (repeat) return;
+    if (excludeTargets && targetMatchesSpec(target, excludeTargets)) return;
     if (!shortcutKeys.includes(key)) return;
 
     if (keys[key]) {
@@ -53,7 +66,9 @@ export const useKeyboardShortcut = (
 
   useEffect(() => {
     window.addEventListener("keyup", keyupListener, true);
-    return () => window.removeEventListener("keydown", keyupListener, true)
+    return () => {
+      window.removeEventListener("keyup", keyupListener, true)
+    }
   }, [keyupListener])
 
   useEffect(() => {
