@@ -1,4 +1,3 @@
-import { current } from '@reduxjs/toolkit';
 import React, { useCallback, useEffect, useState } from 'react';
 import { Channel, ChannelSelector, VersionInfo } from '../components';
 import { useCookies } from 'react-cookie';

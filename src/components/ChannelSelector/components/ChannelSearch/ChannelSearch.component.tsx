@@ -15,7 +15,7 @@ export const ChannelSearch = ({ addChannel }: ChannelSearchProps) => {
 
   const subredditSearch = async (event) => {
     const value = event.target.value;
-    const response = await axios.get(
+    await axios.get(
       `https://www.reddit.com/api/subreddit_autocomplete.json?query=${value}`
     ).then(
       (value) => { setResults(value.data.subreddits) }
