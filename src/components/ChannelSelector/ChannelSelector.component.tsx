@@ -1,14 +1,7 @@
 import React, { Dispatch, SetStateAction, useCallback, useEffect, useReducer } from 'react'
 import { channelGroupType } from '../../types';
 
-import {
-  defaultChannels,
-  sortChannels,
-  addChannelToList,
-  useKeyboardShortcut,
-  useListSelector,  
-} from '../../utils';
-import { setCurrentVideoIndexAction } from '../Channel/store/fetchVideos';
+import {  useKeyboardShortcut } from '../../utils';
 
 import { ChannelList, ChannelSearch } from './components'
 
@@ -16,6 +9,7 @@ type ChannelSelectorProps = {
   setCurrentChannelId: Dispatch<SetStateAction<string>>,
   currentChannelId: string,
   addChannel: (channelId: string) => void,
+  removeChannel: (channelId: string) => void,
   nextChannel: Dispatch<SetStateAction<void>>,
   previousChannel: Dispatch<SetStateAction<void>>,
   channelGroups: channelGroupType[]
@@ -25,6 +19,7 @@ export const ChannelSelector = ({
   setCurrentChannelId,
   currentChannelId,
   addChannel,
+  removeChannel,
   nextChannel,
   previousChannel,
   channelGroups
@@ -39,13 +34,15 @@ export const ChannelSelector = ({
       <h3>Channels</h3>
       <ChannelSearch addChannel={addChannel}/>
       {channelGroups?.map((group) => (
+        group.channels?.length > 0 ?
         <ChannelList
           key={group.name}
           title={group.name}
           channels={group.channels}
           setCurrentChannelId={setCurrentChannelId}
           currentChannelId={currentChannelId}
-        />
+          removeChannel={group.allowRemove ? removeChannel : null}
+        /> : null
       ))}
     </div>
   )

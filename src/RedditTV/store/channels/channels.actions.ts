@@ -23,3 +23,11 @@ export const setChannelId = (id) => (dispatch) => {
 export const setChannelIndex = (dispatch) => {
   dispatch({ type: 'channels/select/index' })
 }
+
+export const addChannel = (id) => (dispatch) => {
+  dispatch({ type: 'channels/add/id', id: id })
+}
+
+export const removeChannel = (id) => (dispatch) => {
+  dispatch({ type: 'channels/remove/id', id: id })
+}
