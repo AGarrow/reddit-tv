@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Icon } from '../../../../components/Icon';
 
 type ChannelRemoveButtonProps = {
   removeChannel: () => void,
@@ -21,6 +22,6 @@ export const ChannelRemoveButton = ({ removeChannel }: ChannelRemoveButtonProps)
   return (
     <button
       onClick={() => setClicked(true)}
-      className="removeChannel"> x </button>
+      className="removeChannel"> <Icon type='x'/> </button>
   )
 }

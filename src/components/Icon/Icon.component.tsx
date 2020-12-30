@@ -1,6 +1,6 @@
 import React from 'react'
 import { defaultChannels } from '../../utils';
-import { NextIcon, PreviousIcon } from './components';
+import { NextIcon, PreviousIcon, XIcon } from './components';
 
 type IconProps = {
   type: string
@@ -12,6 +12,8 @@ export const Icon = ({ type }: IconProps) => {
       return <NextIcon />;
     case 'previous':
       return <PreviousIcon />;
+    case 'x':
+      return <XIcon />
     default:
       return null;
   }

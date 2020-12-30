@@ -32,8 +32,11 @@
       button.removeChannel {
         flex: 1;
         display: none;
+        padding-top: 0px;
+        padding-bottom: 0px;
         &.clicked {
           background-color: red;
+          padding-left: 10px;
         }
       }
       button {

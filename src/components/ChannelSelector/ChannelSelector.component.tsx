@@ -34,6 +34,7 @@ export const ChannelSelector = ({
       <h3>Channels</h3>
       <ChannelSearch addChannel={addChannel}/>
       {channelGroups?.map((group) => (
+        group.channels?.length > 0 ?
         <ChannelList
           key={group.name}
           title={group.name}
@@ -41,7 +42,7 @@ export const ChannelSelector = ({
           setCurrentChannelId={setCurrentChannelId}
           currentChannelId={currentChannelId}
           removeChannel={group.allowRemove ? removeChannel : null}
-        />
+        /> : null
       ))}
     </div>
   )

@@ -25,7 +25,7 @@ export const ChannelList = ({
         {channels.map((ch) => (
           <li key={ch.id} className={ch.id === currentChannelId ? "current" : null }>
             <ChannelSelectButton channelId={ch.id} setCurrentChannelId={setCurrentChannelId} />
-            <ChannelRemoveButton removeChannel={() => removeChannel(ch.id)} />
+            {removeChannel ? <ChannelRemoveButton removeChannel={() => removeChannel(ch.id)} /> : null}
           </li>
         ))}
       </ul>
