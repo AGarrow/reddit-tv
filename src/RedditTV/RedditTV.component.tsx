@@ -10,8 +10,11 @@ import {
   setChannelIndex,
   nextChannel,
   previousChannel,
+  addChannel,
+  removeChannel,
   selectCurrentChannelId,
   selectChannelGroups,
+  selectChannelGroup,
   isDefaultChannel
 } from './store';
 
@@ -20,16 +23,19 @@ export const RedditTV = ({ }) => {
   const [cookies, setCookies] = useCookies(['my_channels']);
   const currentChannelId = useSelector(state => selectCurrentChannelId(state))
   const channelGroups = useSelector(state => selectChannelGroups(state))
+  const channelGroup = useSelector(state => selectChannelGroup(state))
   const isDefault = useSelector(state => isDefaultChannel(state))
 
-  const myChannels = sortChannels(cookies['my_channels'] || [])
-
-  const addChannelToCookies = (channelId) => {
+  const dispatchAddChannel = useCallback((channelId) => {
     if (!isDefault(channelId)) {
-      setCookies('my_channels', addChannelToList(myChannels, { id: channelId }))  
+      dispatch(addChannel(channelId))
     }
     setCurrentChannelId(channelId);
-  }
+  }, [])
+
+  const dispatchRemoveChannel = useCallback((channelId) => {
+    dispatch(removeChannel(channelId))
+  }, [])
 
   const dispatchNextChannel = useCallback(() => {
     dispatch(nextChannel)
@@ -39,13 +45,18 @@ export const RedditTV = ({ }) => {
     dispatch(previousChannel)
   }, [dispatch, nextChannel])
 
+  const cookieChannels = channelGroup('cookies')?.channels
   useEffect(() => {
-    dispatch(setChannelsFromCookies(myChannels));
+    if (cookieChannels == null) return;
+    setCookies('my_channels', cookieChannels)
     dispatch(setChannelIndex);
-  }, [cookies])
+  }, [cookieChannels])
 
   useEffect(() => {
+    const myChannels = sortChannels(cookies['my_channels'] || [])
+
     dispatch(setDefaultChannels);
+    dispatch(setChannelsFromCookies(myChannels));
     setCurrentChannelId('toptalent')
   }, [])
 
@@ -59,7 +70,8 @@ export const RedditTV = ({ }) => {
         <ChannelSelector
           currentChannelId={currentChannelId}
           setCurrentChannelId={setCurrentChannelId}
-          addChannel={addChannelToCookies}
+          addChannel={dispatchAddChannel}
+          removeChannel={dispatchRemoveChannel}
           nextChannel={dispatchNextChannel}
           previousChannel={dispatchPreviousChannel}
           channelGroups={channelGroups}

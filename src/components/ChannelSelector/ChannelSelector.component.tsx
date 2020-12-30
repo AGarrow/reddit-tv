@@ -16,6 +16,7 @@ type ChannelSelectorProps = {
   setCurrentChannelId: Dispatch<SetStateAction<string>>,
   currentChannelId: string,
   addChannel: (channelId: string) => void,
+  removeChannel: (channelId: string) => void,
   nextChannel: Dispatch<SetStateAction<void>>,
   previousChannel: Dispatch<SetStateAction<void>>,
   channelGroups: channelGroupType[]
@@ -25,6 +26,7 @@ export const ChannelSelector = ({
   setCurrentChannelId,
   currentChannelId,
   addChannel,
+  removeChannel,
   nextChannel,
   previousChannel,
   channelGroups
@@ -45,6 +47,7 @@ export const ChannelSelector = ({
           channels={group.channels}
           setCurrentChannelId={setCurrentChannelId}
           currentChannelId={currentChannelId}
+          removeChannel={group.allowRemove ? removeChannel : null}
         />
       ))}
     </div>

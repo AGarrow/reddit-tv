@@ -1,3 +1,5 @@
+import { addChannelToList } from '../../../utils/channels';
+
 export const channelsReducer = (state, action) => {
   const ids = (channels) => channels != null ? channels.map((ch) => ch.id) : []
 
@@ -12,6 +14,7 @@ export const channelsReducer = (state, action) => {
           defaults: {
             name: 'Suggested',
             order: 0,
+            allowRemove: false,
             channels: action.payload
           }
         },
@@ -25,6 +28,7 @@ export const channelsReducer = (state, action) => {
           cookies: {
             name: 'My Channels',
             order: 1,
+            allowRemove: true,
             channels: action.payload
           }
         },
@@ -57,6 +61,30 @@ export const channelsReducer = (state, action) => {
       return {
         ...state,
         index: findIndex(state.current)
+      }
+    case 'channels/add/id':
+      const cookieChannels = addChannelToList(state.groups.cookies.channels, { id: action.id }) 
+      return {
+        ...state,
+        groups: {
+          ...state.groups,
+          cookies: {
+            ...state.groups.cookies,
+            channels: cookieChannels,
+          }
+        },
+        all: ids(cookieChannels).concat(ids(state.groups?.defaults.channels))
+      }
+    case 'channels/remove/id':
+      return {
+        ...state,
+        groups: {
+          ...state.groups,
+          cookies: {
+            ...state.groups.cookies,
+            channels: state.groups.cookies.channels.filter((ch) => ch.id !== action.id)
+          }
+        }
       }
     default:
       return {

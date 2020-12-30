@@ -21,9 +21,23 @@
 
     li {
       border-bottom: 1px;
+      border-radius: 5px;
+      display: flex;
+      overflow: hidden;
+
+      button.channelListButton {
+        overflow: hidden;
+        width: 100%;
+      }
+      button.removeChannel {
+        flex: 1;
+        display: none;
+        &.clicked {
+          background-color: red;
+        }
+      }
       button {
         background-color: transparent;
-        width: 100%;
         text-overflow: ellipsis;
         border: none;
         outline: none;
@@ -34,17 +48,18 @@
         padding-bottom: 5px;
         padding-left: 15px;
         font-size: 14px;
-        border-radius: 5px;
-        &:hover {
-          background-color: $brand-med-grey;
-        }
       }
-    }
 
-    li.current {
-      button {
+      &.current {
         background-color: $brand-light-grey;
         transition: background-color 0.2s linear;
+      }
+
+      &:hover {
+        background-color: $brand-med-grey;
+        button.removeChannel {
+          display: block;
+        }
       }
     }
   }

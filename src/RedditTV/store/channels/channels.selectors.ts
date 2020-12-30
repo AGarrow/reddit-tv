@@ -6,6 +6,11 @@ export const selectChannelGroups = (state) => {
   return groups.sort((a, b) => a.order > b.order ? -1 : 1)
 }
 
+export const selectChannelGroup = (state) => (group) => {
+  if (state.channels.groups == null) return;
+  return state.channels.groups[group]
+}
+
 export const isDefaultChannel = (state) => (channelId) => {
   if (state.channels.groups == null) return;
   return !!state.channels.groups.defaults.channels.find((ch) => ch.id === channelId)
