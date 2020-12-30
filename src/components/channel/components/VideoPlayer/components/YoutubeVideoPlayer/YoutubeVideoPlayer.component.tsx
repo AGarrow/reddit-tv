@@ -8,7 +8,7 @@ type YoutubeVideoPlayerProps = {
 export const YoutubeVideoPlayer = ({ videoSource, onEnded }: YoutubeVideoPlayerProps) => {
   return (
     <div className="videoPlayer">
-      <iframe src={videoSource}></iframe>
+      <iframe src={`${videoSource}&autoplay=1`}></iframe>
     </div>
     
   )
