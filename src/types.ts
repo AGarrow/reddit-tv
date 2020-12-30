@@ -32,5 +32,6 @@ export type channelType = {
 export type channelGroupType = {
   name: string,
   order: number,
-  channels: channelType[]
+  channels: channelType[],
+  allowRemove: boolean,
 }

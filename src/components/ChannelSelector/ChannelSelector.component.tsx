@@ -1,14 +1,7 @@
 import React, { Dispatch, SetStateAction, useCallback, useEffect, useReducer } from 'react'
 import { channelGroupType } from '../../types';
 
-import {
-  defaultChannels,
-  sortChannels,
-  addChannelToList,
-  useKeyboardShortcut,
-  useListSelector,  
-} from '../../utils';
-import { setCurrentVideoIndexAction } from '../Channel/store/fetchVideos';
+import {  useKeyboardShortcut } from '../../utils';
 
 import { ChannelList, ChannelSearch } from './components'
 
