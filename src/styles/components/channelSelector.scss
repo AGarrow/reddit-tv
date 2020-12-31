@@ -1,6 +1,20 @@
 @import "../base/constants.scss";
 
 .channelListContainer {
+  @media screen and (max-width: $screen-lg-min) {
+    width: 100%;
+    div.listHeader {
+      width: 100%;
+      overflow: hidden;
+      h3 {
+        display: inline;
+      }
+      button.toggleShow {
+        display: inline;
+      }
+    }
+  }
+
   h3,
   h4 {
     font-family: "Helvetica Neue Medium";
@@ -13,6 +27,35 @@
     margin-bottom: 10px;
     padding-left: 15px;
   }
+
+  button.toggleShow {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: 100%;
+    text-align: left;
+    svg {
+      float: right;
+      fill: white;
+    }
+  }
+
+  &[data-open="true"] {
+    button.toggleShow > svg {
+      transform: rotate(-90deg);
+      -webkit-transform: rotate(-90deg);
+      transition: 0.25s ease-in-out;
+    }
+  }
+
+  &[data-open="false"] {
+    button.toggleShow > svg {
+      transform: rotate(0deg);
+      -webkit-transform: rotate(0deg);
+      transition: 0.25s ease-in-out;
+    }
+  }
+
   ul {
     list-style-type: none;
     padding-left: 0%;

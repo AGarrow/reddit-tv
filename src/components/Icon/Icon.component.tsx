@@ -1,6 +1,6 @@
 import React from 'react'
 import { defaultChannels } from '../../utils';
-import { NextIcon, PreviousIcon, XIcon } from './components';
+import { ChevronLeft, NextIcon, PreviousIcon, XIcon } from './components';
 
 type IconProps = {
   type: string
@@ -8,6 +8,8 @@ type IconProps = {
 
 export const Icon = ({ type }: IconProps) => {
   switch (type) {
+    case 'chevron-left':
+      return <ChevronLeft />;
     case 'next':
       return <NextIcon />;
     case 'previous':

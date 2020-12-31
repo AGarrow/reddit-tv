@@ -130,8 +130,29 @@ div.redditTVContainer {
       }
 
       @media screen and (max-width: $screen-lg-min) {
-        width: 100%;
-        padding-top: 5px;
+        width: auto;
+        position: fixed;
+        z-index: 1;
+        padding: 20px 5px 5px 5px;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        background-color: $brand-dark-black;
+        overflow: hidden;
+
+        &[data-open="true"] {
+          & > div.channelListContent {
+            max-height: 100vh;
+            transition: max-height 0.25s ease-in-out;
+          }
+        }
+
+        &[data-open="false"] {
+          & > div.channelListContent {
+            max-height: 0px;
+            transition: max-height 0.25s ease-in-out;
+          }
+        }
       }
     }
   }
