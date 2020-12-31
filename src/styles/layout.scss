@@ -57,6 +57,10 @@ div.redditTVContainer {
             overflow: hidden;
           }
 
+          @media screen and (max-width: $screen-lg-min) {
+            margin-top: 40px;
+          }
+
           .videoPlayer {
             flex: 1 2 100%;
             align-self: stretch;
@@ -96,6 +100,7 @@ div.redditTVContainer {
             }
 
             @include sm {
+              display: none;
               width: 50%;
               max-width: 100%;
               max-height: 5rem;
@@ -161,6 +166,10 @@ div.redditTVContainer {
 .playerInfo,
 .channelInfo {
   width: 100%;
+
+  @media screen and (max-width: $screen-lg-min) {
+    display: none;
+  }
 }
 
 div.videoListContainer {

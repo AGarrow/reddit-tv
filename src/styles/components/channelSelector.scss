@@ -8,10 +8,21 @@
       overflow: hidden;
       h3 {
         display: inline;
+        &#channels {
+          display: none;
+        }
       }
       button.toggleShow {
         display: inline;
       }
+    }
+  }
+  @media screen and (min-width: $screen-lg-min) {
+    h3#currentChannel {
+      display: none;
+    }
+    button > svg {
+      display: none;
     }
   }
 

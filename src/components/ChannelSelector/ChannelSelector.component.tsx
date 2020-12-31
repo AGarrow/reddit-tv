@@ -35,7 +35,8 @@ export const ChannelSelector = ({
     <div className="channelListContainer" data-open={open}>
       <div className="listHeader">
         <button className="toggleShow" onClick={() => setOpen(!open)}>
-          <h3>Channels</h3>
+          <h3 id="channels">Channels</h3>
+          <h3 id="currentChannel">{currentChannelId}</h3>
           <Icon type="chevron-left" />
         </button>
       </div>
