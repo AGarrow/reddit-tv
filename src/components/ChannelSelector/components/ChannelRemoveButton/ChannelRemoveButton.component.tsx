@@ -13,6 +13,8 @@ export const ChannelRemoveButton = ({ removeChannel }: ChannelRemoveButtonProps)
       <button
         onClick={removeChannel}
         onMouseLeave={() => setClicked(false)}
+        onTouchCancel={() => setClicked(false)}
+        onBlur={() => setClicked(false)}
         className="removeChannel clicked"
       >
         remove
@@ -22,6 +24,8 @@ export const ChannelRemoveButton = ({ removeChannel }: ChannelRemoveButtonProps)
   return (
     <button
       onClick={() => setClicked(true)}
-      className="removeChannel"> <Icon type='x'/> </button>
+      className="removeChannel">
+      <Icon type='minus' />
+    </button>
   )
 }

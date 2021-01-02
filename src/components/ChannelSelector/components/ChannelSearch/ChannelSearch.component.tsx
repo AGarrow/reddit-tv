@@ -69,7 +69,7 @@ export const ChannelSearch = ({ addChannel }: ChannelSearchProps) => {
           results.map((r) => (
             <li key={r.name} className={r.name === currentSelection ? "current" : null}>
               <button
-                onClick={
+                onMouseDown={
                   () => {
                     addChannel(r.name);
                     setShowResults(false);
