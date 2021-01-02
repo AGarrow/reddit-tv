@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Channel, ChannelSelector, VersionInfo } from '../components';
+import { Channel, ChannelSelector } from '../components';
 import { useCookies } from 'react-cookie';
-import { addChannelToList, sortChannels } from '../utils';
+import { sortChannels } from '../utils';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   setChannelsFromCookies,
@@ -78,7 +78,6 @@ export const RedditTV = ({ }) => {
         />
         {currentChannelId != null ? <Channel id={currentChannelId} /> : null}
       </div>
-      {/* <VersionInfo /> */}
     </div>
   )
 }

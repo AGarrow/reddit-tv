@@ -25,7 +25,7 @@ export const ChannelRemoveButton = ({ removeChannel }: ChannelRemoveButtonProps)
     <button
       onClick={() => setClicked(true)}
       className="removeChannel">
-      <Icon type='x' />
+      <Icon type='minus' />
     </button>
   )
 }
