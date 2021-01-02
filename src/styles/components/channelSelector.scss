@@ -3,11 +3,12 @@
 .channelListContainer {
   @media screen and (max-width: $screen-lg-min) {
     width: 100%;
+    padding-top: 15px;
     div.listHeader {
-      width: 100%;
       overflow: hidden;
       h3 {
         display: inline;
+        font-size: 18px;
         &#channels {
           display: none;
         }
@@ -21,8 +22,21 @@
     h3#currentChannel {
       display: none;
     }
-    button > svg {
+    button.toggleShow > svg {
       display: none;
+    }
+
+    ul {
+      li {
+        button.removeChannel {
+          display: none;
+        }
+        &:hover {
+          button.removeChannel {
+            display: block;
+          }
+        }
+      }
     }
   }
 
@@ -48,6 +62,7 @@
     svg {
       float: right;
       fill: white;
+      padding-right: 10px;
     }
   }
 
@@ -85,7 +100,6 @@
       }
       button.removeChannel {
         flex: 1;
-        display: none;
         padding-top: 0px;
         padding-bottom: 0px;
         &.clicked {
@@ -114,9 +128,6 @@
 
       &:hover {
         background-color: $brand-med-grey;
-        button.removeChannel {
-          display: block;
-        }
       }
     }
   }

@@ -78,7 +78,7 @@ export const RedditTV = ({ }) => {
         />
         {currentChannelId != null ? <Channel id={currentChannelId} /> : null}
       </div>
-      <VersionInfo />
+      {/* <VersionInfo /> */}
     </div>
   )
 }
