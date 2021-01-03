@@ -1,9 +1,16 @@
 @import "../base/constants.scss";
 
 .channelListContainer {
+  // desktop experience
   @media screen and (max-width: $screen-lg-min) {
     width: 100%;
     padding-top: 15px;
+    background-color: $brand-med-grey;
+
+    & > div.channelListContent {
+      padding-top: 15px;
+    }
+
     div.listHeader {
       overflow: hidden;
       h3 {
@@ -17,12 +24,21 @@
         display: inline;
       }
     }
+
+    ul {
+      li {
+        &:hover {
+          background-color: $brand-med-grey;
+        }
+      }
+    }
   }
+  // mobile experience
   @media screen and (min-width: $screen-lg-min) {
     h3#currentChannel {
       display: none;
     }
-    button.toggleShow > svg {
+    button.toggleShow {
       display: none;
     }
 
@@ -125,10 +141,6 @@
       &.current {
         background-color: $brand-light-grey;
         transition: background-color 0.2s linear;
-      }
-
-      &:hover {
-        background-color: $brand-med-grey;
       }
     }
   }

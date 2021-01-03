@@ -126,10 +126,6 @@ div.redditTVContainer {
       display: flex;
       flex-direction: column;
 
-      & > div.channelListContent {
-        padding-top: 15px;
-      }
-
       @include lg {
         min-width: 140px;
         max-width: 200px;
@@ -143,7 +139,6 @@ div.redditTVContainer {
         top: 0px;
         left: 0px;
         right: 0px;
-        background-color: $brand-dark-black;
         overflow: hidden;
 
         &[data-open="true"] {
